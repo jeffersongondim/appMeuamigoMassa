@@ -1,38 +1,13 @@
-/**
- * Created pela equipe Meu amigo é Massa 
- */
-var controllers = angular.module("app.controllers", [])
+angular.module('starter.controllers', [])
 
-  .controller('CameraCtrl', function ($scope, $ionicPlatform, ImageService, FileService, $cordovaSocialSharing, $cordovaDevice, $cordovaFile) {
+//Controller que recebe os itens dos botões.
+.controller('MenuCtrl', function($scope, Data) {
+  $scope.items = Data.items;
+})
 
-    $ionicPlatform.ready(function () {      
-      $scope.$apply();
-      alert($scope.images);
-      $scope.images = FileService.getImages();
-    });
+.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
-    $scope.captureImage = function () {
-      ImageService.takePicture();
-      $scope.images = FileService.getImages();
-    };
+})
 
-    $scope.compartilharImage = function(img) {
-        var filePath = cordova.file.externalRootDirectory + 'MeuAmigoMassa/'+ img;
-        $cordovaSocialSharing.share("Este é o meu amigo massa!", " ", filePath, "https://www.linkdoapp.com");
-    };
-
-    $scope.urlForImage = function (imageName) {
-      var filePath = cordova.file.externalRootDirectory + 'MeuAmigoMassa/' + imageName;
-      return filePath;
-    };
-
-    // appends file path to imageName
-    $scope.urlForImage = function (imageName) {
-      var trueOrigin = cordova.file.externalRootDirectory + 'MeuAmigoMassa/' + imageName;
-      return trueOrigin;
-    };
-
-
-  });
 
 
